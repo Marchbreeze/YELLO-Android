@@ -45,7 +45,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
 
     private fun initSignInBtnListener() {
         binding.btnSignIn.setOnSingleClickListener {
-            AmplitudeManager.trackEventWithProperties("click_onboarding_kakao")
+            AmplitudeManager.trackEventWithProperties(EVENT_CLICK_ONBOARDING_KAKAO)
             viewModel.startLogInWithKakao(this)
         }
     }
@@ -210,5 +210,6 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         const val EXTRA_NAME = "NAME"
         const val EXTRA_GENDER = "GENDER"
         const val CHECK_NAME_DIALOG = "CHECK_NAME_DIALOG"
+        private const val EVENT_CLICK_ONBOARDING_KAKAO = "click_onboarding_kakao"
     }
 }

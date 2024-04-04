@@ -29,7 +29,7 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor(
     private val onboardingRepository: OnboardingRepository,
     private val authRepository: AuthRepository,
-    private val profileRepository: ProfileRepository
+    private val profileRepository: ProfileRepository,
 ) : ViewModel() {
 
     private val _postChangeTokenResult = MutableSharedFlow<Boolean>()
@@ -134,7 +134,7 @@ class SignInViewModel @Inject constructor(
     private fun changeTokenFromServer(
         accessToken: String,
         social: String = KAKAO,
-        deviceToken: String
+        deviceToken: String,
     ) {
         viewModelScope.launch {
             onboardingRepository.postTokenToServiceToken(
@@ -195,13 +195,11 @@ class SignInViewModel @Inject constructor(
 
     companion object {
         const val KAKAO = "KAKAO"
-
         const val THUMBNAIL = "profile_image"
         const val EMAIL = "account_email"
         const val FRIEND_LIST = "friends"
         const val NAME = "name"
         const val GENDER = "gender"
-
         const val ERROR = "error"
     }
 }

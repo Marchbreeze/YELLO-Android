@@ -11,12 +11,12 @@ import com.el.yello.databinding.FragmentCodeBinding
 import com.el.yello.presentation.onboarding.OnBoardingViewModel
 import com.el.yello.presentation.onboarding.activity.GetAlarmActivity
 import com.el.yello.presentation.onboarding.activity.OnBoardingActivity
-import com.el.yello.util.manager.AmplitudeManager
 import com.el.yello.util.extension.yelloSnackbar
+import com.el.yello.util.manager.AmplitudeManager
 import com.example.ui.base.BindingFragment
 import com.example.ui.extension.colorOf
-import com.example.ui.state.UiState
 import com.example.ui.extension.setOnSingleClickListener
+import com.example.ui.state.UiState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

@@ -41,9 +41,9 @@ class ReadingTicketUseDialog :
     private fun initEvent() {
         binding.tvOk.setOnSingleClickListener {
             if (isKeywordOpened) {
-                AmplitudeManager.trackEventWithProperties("click_modal_fullname_yes")
+                AmplitudeManager.trackEventWithProperties(EVENT_MODAL_FULL_NAME_YES)
             } else {
-                AmplitudeManager.trackEventWithProperties("click_modal_fullnamefirst_yes")
+                AmplitudeManager.trackEventWithProperties(EVENT_MODAL_FULL_NAME_FIRST_YES)
             }
             dismiss()
             ReadingTicketAfterDialog.newInstance().show(parentFragmentManager, "dialog")
@@ -51,9 +51,9 @@ class ReadingTicketUseDialog :
 
         binding.tvNo.setOnSingleClickListener {
             if (isKeywordOpened) {
-                AmplitudeManager.trackEventWithProperties("click_modal_fullname_no")
+                AmplitudeManager.trackEventWithProperties(EVENT_MODAL_FULL_NAME_NO)
             } else {
-                AmplitudeManager.trackEventWithProperties("click_modal_fullnamefirst_no")
+                AmplitudeManager.trackEventWithProperties(EVENT_MODAL_FULL_NAME_FIRST_NO)
             }
             dismiss()
         }
@@ -75,6 +75,10 @@ class ReadingTicketUseDialog :
 
     companion object {
         private const val ARGS_IS_KEYWORD_OPENED = "is_keyword_opened"
+        private const val EVENT_MODAL_FULL_NAME_YES = "click_modal_fullname_yes"
+        private const val EVENT_MODAL_FULL_NAME_NO = "click_modal_fullname_no"
+        private const val EVENT_MODAL_FULL_NAME_FIRST_YES = "click_modal_fullnamefirst_yes"
+        private const val EVENT_MODAL_FULL_NAME_FIRST_NO = "click_modal_fullnamefirst_no"
 
         @JvmStatic
         fun newInstance(isKeywordOpened: Boolean) = ReadingTicketUseDialog().apply {

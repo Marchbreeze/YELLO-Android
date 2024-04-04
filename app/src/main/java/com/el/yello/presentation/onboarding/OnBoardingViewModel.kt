@@ -389,12 +389,14 @@ class OnBoardingViewModel @Inject constructor(
                     Timber.e("POST SIGN UP ERROR : $t")
                 }
         }
-        AmplitudeManager.updateUserProperties("user_sex", gender)
-        AmplitudeManager.updateUserProperties("user_name", nameText.value.toString())
+        AmplitudeManager.updateUserProperties(PROPERTY_USER_SEX, gender)
+        AmplitudeManager.updateUserProperties(PROPERTY_USER_NAME, nameText.value.toString())
     }
 
     companion object {
         private const val REGEX_ID_PATTERN = "^([A-Za-z0-9_.]*)\$"
         private const val REGEX_NAME_PATTERN = "^([가-힣]*)\$"
+        private const val PROPERTY_USER_SEX = "user_sex"
+        private const val PROPERTY_USER_NAME = "user_name"
     }
 }
