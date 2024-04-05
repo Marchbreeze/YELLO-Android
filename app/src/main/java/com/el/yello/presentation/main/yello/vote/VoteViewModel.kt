@@ -86,6 +86,9 @@ class VoteViewModel @Inject constructor(
     private var _idempotencyKey: UUID? = null
     val idempotencyKey: UUID get() = requireNotNull(_idempotencyKey)
 
+    private val _isIndexErrorOccurred = MutableStateFlow<Boolean>(false)
+    val isIndexErrorOccurred get() = _isIndexErrorOccurred.asStateFlow()
+
     init {
         getStoredVote()
     }
@@ -264,10 +267,15 @@ class VoteViewModel @Inject constructor(
     }
 
     private fun initCurrentChoice() {
-        _currentChoice.value = Choice(
-            questionId = voteList[currentNoteIndex].questionId,
-            backgroundIndex = (backgroundIndex + currentNoteIndex) % 12 + 1,
-        )
+        try {
+            _currentChoice.value = Choice(
+                questionId = voteList[currentNoteIndex].questionId,
+                backgroundIndex = (backgroundIndex + currentNoteIndex) % 12 + 1,
+            )
+        } catch (e: IndexOutOfBoundsException) {
+            voteRepository.clearStoredVote()
+            _isIndexErrorOccurred.emit(true)
+        }
     }
 
     private fun initVoteIndex() {
