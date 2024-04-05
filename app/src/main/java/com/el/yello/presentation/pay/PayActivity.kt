@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
@@ -91,6 +92,7 @@ class PayActivity : BindingActivity<ActivityPayBinding>(R.layout.activity_pay) {
         observeCheckInAppValidState()
         initPrivacyBtnListener()
         initServiceBtnListener()
+        setBackPressedWhenLoading()
     }
 
     private fun initView() {
@@ -446,6 +448,17 @@ class PayActivity : BindingActivity<ActivityPayBinding>(R.layout.activity_pay) {
             binding.layoutAdCheckLoading.isVisible = false
         }
         window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
+    private fun setBackPressedWhenLoading(){
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (!manager.isPurchasing.value) {
+                    finish()
+                }
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     // 서버 오류(500) 시 시스템 다이얼로그 띄우기
