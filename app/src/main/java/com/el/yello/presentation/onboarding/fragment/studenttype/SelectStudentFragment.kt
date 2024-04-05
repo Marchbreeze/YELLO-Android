@@ -58,7 +58,6 @@ class SelectStudentFragment :
                     binding.btnSelectTypeNext.setOnSingleClickListener {
                         findNavController().navigate(R.id.action_selectStudentFragment_to_universityInfoFragment)
                         amplitudeSelectStudent()
-                        AmplitudeManager.updateUserProperties(EVENT_STUDENT_TYPE, VALUE_UNIVERSITY)
                         val activity = requireActivity() as OnBoardingActivity
                         activity.progressBarPlus()
                     }
