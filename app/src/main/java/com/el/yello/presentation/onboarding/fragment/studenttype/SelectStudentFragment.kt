@@ -22,7 +22,7 @@ class SelectStudentFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
-        binding.highschool = StudentType.SCHOOL.toString()
+        binding.school = StudentType.SCHOOL.toString()
         binding.university = StudentType.UNIVERSITY.toString()
         setupStudentType()
     }
@@ -45,7 +45,7 @@ class SelectStudentFragment :
         viewModel.studentType.observe(viewLifecycleOwner) { studentType ->
             when (studentType) {
                 StudentType.SCHOOL.toString() -> {
-                    changeHighSchoolBtn()
+                    changeSchoolBtn()
                     binding.btnSelectTypeNext.setOnSingleClickListener {
                         findNavController().navigate(R.id.action_selectStudentFragment_to_highschoolInfoFragment)
                         amplitudeSelectStudent()
@@ -67,7 +67,7 @@ class SelectStudentFragment :
         }
     }
 
-    private fun changeHighSchoolBtn() {
+    private fun changeSchoolBtn() {
         with(binding) {
             btnSchoolHighschool.setBackgroundResource(R.drawable.shape_black_fill_yello500_line_8_rect)
             btnSchoolUniversity.setBackgroundResource(R.drawable.shape_black_fill_grayscales700_line_8_rect)
