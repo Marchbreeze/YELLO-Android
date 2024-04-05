@@ -45,9 +45,23 @@ class VoteActivity : BindingActivity<ActivityVoteBinding>(R.layout.activity_vote
         super.onCreate(savedInstanceState)
         binding.vm = viewModel
 
+        setupIsIndexErrorOccurred()
         setupCurrentNoteIndex()
         setupPostVoteState()
         setupVoteState()
+    }
+
+    private fun setupIsIndexErrorOccurred() {
+        viewModel.isIndexErrorOccurred.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach { isErrorOccurred ->
+                if (isErrorOccurred) {
+                    toast(
+                        binding.root,
+                        getString(R.string.internet_connection_error_msg),
+                    )
+                    finish()
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun setupVoteState() {
