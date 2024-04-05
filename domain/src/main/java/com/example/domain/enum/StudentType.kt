@@ -1,9 +1,9 @@
 package com.example.domain.enum
 
 enum class StudentType {
-    HIGHSCHOOL, UNIVERSITY;
+    SCHOOL, UNIVERSITY;
     override fun toString() = when (this) {
-        HIGHSCHOOL -> "HIGHSCHOOL"
+        SCHOOL -> "HIGHSCHOOL"
         UNIVERSITY -> "UNIVERSITY"
     }
 }
