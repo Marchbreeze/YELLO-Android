@@ -120,28 +120,21 @@ class MyYelloReadActivity :
         binding.btnSendCheck.setOnSingleClickListener {
             if (binding.tvNameNotYet.isVisible && binding.tvKeywordNotYet.isVisible) {
                 AmplitudeManager.trackEventWithProperties(EVENT_CLICK_OPEN_FULL_NAME_FIRST)
-                AmplitudeManager.trackEventWithProperties(
-                    EVENT_CLICK_GO_SHOP,
-                    JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_NOTHING),
-                )
+                AmplitudeManager.trackEventWithProperties(EVENT_CLICK_GO_SHOP, JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_NOTHING))
             } else if (viewModel.yelloDetail?.isSubscribe == true && binding.tvKeywordNotYet.isGone) {
+                if (viewModel.yelloDetail?.nameHint == 0 || viewModel.yelloDetail?.nameHint == 1) {
+                    AmplitudeManager.trackEventWithProperties(EVENT_CLICK_GO_SHOP, JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_FIRST_LETTER))
+                } else {
+                    AmplitudeManager.trackEventWithProperties(EVENT_CLICK_GO_SHOP, JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_KEYWORD_SUB))
+                }
                 AmplitudeManager.trackEventWithProperties(EVENT_CLICK_OPEN_FULL_NAME)
-                AmplitudeManager.trackEventWithProperties(
-                    EVENT_CLICK_GO_SHOP,
-                    JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_KEYWORD_SUB),
-                )
             } else if (viewModel.yelloDetail?.isSubscribe == false && binding.tvKeywordNotYet.isGone) {
+                if (viewModel.yelloDetail?.nameHint == 0 || viewModel.yelloDetail?.nameHint == 1) {
+                    AmplitudeManager.trackEventWithProperties(EVENT_CLICK_GO_SHOP, JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_FIRST_LETTER))
+                } else {
+                    AmplitudeManager.trackEventWithProperties(EVENT_CLICK_GO_SHOP, JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_KEYWORD_NO_SUB))
+                }
                 AmplitudeManager.trackEventWithProperties(EVENT_CLICK_OPEN_FULL_NAME)
-                AmplitudeManager.trackEventWithProperties(
-                    EVENT_CLICK_GO_SHOP,
-                    JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_KEYWORD_NO_SUB),
-                )
-            } else if ((viewModel.yelloDetail?.nameHint == 0 || viewModel.yelloDetail?.nameHint == 1) && binding.tvKeywordNotYet.isVisible) {
-                AmplitudeManager.trackEventWithProperties(EVENT_CLICK_OPEN_FULL_NAME_FIRST)
-                AmplitudeManager.trackEventWithProperties(
-                    EVENT_CLICK_GO_SHOP,
-                    JSONObject().put(JSON_SHOP_BUTTON, VALUE_CTA_FIRST_LETTER),
-                )
             }
             Intent(this, PayActivity::class.java).apply {
                 startActivity(this)
@@ -232,17 +225,21 @@ class MyYelloReadActivity :
         binding.clTopView.visibility = if (isInstagram) View.INVISIBLE else View.VISIBLE
         binding.clBottomView.visibility = if (isInstagram) View.INVISIBLE else View.VISIBLE
         with(binding.tvSendEnd) {
-            if (isInstagram) setMargins(
-                left = marginLeft,
-                top = marginTop + MARGIN_TOP_INSTAGRAM_SEND.dpToPx(context),
-                right = marginRight,
-                bottom = marginBottom,
-            ) else setMargins(
-                left = marginLeft,
-                top = MARGIN_TOP_TV_SEND_END.dpToPx(context),
-                right = marginRight,
-                bottom = marginBottom,
-            )
+            if (isInstagram) {
+                setMargins(
+                    left = marginLeft,
+                    top = marginTop + MARGIN_TOP_INSTAGRAM_SEND.dpToPx(context),
+                    right = marginRight,
+                    bottom = marginBottom,
+                )
+            } else {
+                setMargins(
+                    left = marginLeft,
+                    top = MARGIN_TOP_TV_SEND_END.dpToPx(context),
+                    right = marginRight,
+                    bottom = marginBottom,
+                )
+            }
         }
     }
 
@@ -267,9 +264,13 @@ class MyYelloReadActivity :
                 )
             }
         binding.tvInitialCheck.text =
-            if (yello.isAnswerRevealed) getString(R.string.my_yello_read_open_first_letter_with_300_points) else getString(
-                R.string.my_yello_read_open_keyword_with_100_points
-            )
+            if (yello.isAnswerRevealed) {
+                getString(R.string.my_yello_read_open_first_letter_with_300_points)
+            } else {
+                getString(
+                    R.string.my_yello_read_open_keyword_with_100_points,
+                )
+            }
 
         if (yello.isSubscribe) {
             binding.tvInitialCheck.isInvisible = yello.isAnswerRevealed

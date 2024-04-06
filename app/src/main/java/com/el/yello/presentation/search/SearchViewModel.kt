@@ -52,7 +52,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             searchRepository.getSearchList(
                 ++currentPage,
-                keyword
+                keyword,
             )
                 .onSuccess {
                     it ?: return@launch

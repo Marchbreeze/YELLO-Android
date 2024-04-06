@@ -38,7 +38,7 @@ class ProfileQuitReasonActivity :
         _adapter = ProfileQuitReasonAdapter(
             storeQuitReason = ::storeQuitReason,
             setEtcText = ::setEtcText,
-            onItemClickListener = ::setClickedItemUI
+            onItemClickListener = ::setClickedItemUI,
         )
         binding.rvQuitReason.adapter = adapter
     }

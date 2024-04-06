@@ -20,7 +20,7 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
         val binding = ItemMyYelloBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
-            false
+            false,
         )
         return MyYelloViewHolder(binding, itemClick)
     }
@@ -56,7 +56,7 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
 
     class MyYelloViewHolder(
         private val binding: ItemMyYelloBinding,
-        private val itemClick: (Yello, Int) -> Unit
+        private val itemClick: (Yello, Int) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: Yello, position: Int) {
             binding.data = item
@@ -69,8 +69,8 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
             binding.cardMyYello.setCardBackgroundColor(
                 ContextCompat.getColor(
                     itemView.context,
-                    R.color.grayscales_900
-                )
+                    R.color.grayscales_900,
+                ),
             )
             binding.tvTime.setTextColor(ContextCompat.getColor(itemView.context, R.color.grayscales_600))
             if (item.gender == Gender.M) {
@@ -78,8 +78,8 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
                     binding.cardMyYello.setCardBackgroundColor(
                         ContextCompat.getColor(
                             itemView.context,
-                            R.color.semantic_gender_m_700
-                        )
+                            R.color.semantic_gender_m_700,
+                        ),
                     )
                     ContextCompat.getColor(itemView.context, R.color.semantic_gender_m_300).apply {
                         binding.tvSendName.setTextColor(this)
@@ -90,8 +90,8 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
                 binding.ivYello.setImageDrawable(
                     ContextCompat.getDrawable(
                         itemView.context,
-                        R.drawable.ic_yello_blue
-                    )
+                        R.drawable.ic_yello_blue,
+                    ),
                 )
                 binding.tvGender.text = binding.root.context.getString(R.string.my_yello_send_by_boy)
             } else {
@@ -99,8 +99,8 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
                     binding.cardMyYello.setCardBackgroundColor(
                         ContextCompat.getColor(
                             itemView.context,
-                            R.color.semantic_gender_f_700
-                        )
+                            R.color.semantic_gender_f_700,
+                        ),
                     )
                     ContextCompat.getColor(itemView.context, R.color.semantic_gender_f_300).apply {
                         binding.tvSendName.setTextColor(this)
@@ -111,8 +111,8 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
                 binding.ivYello.setImageDrawable(
                     ContextCompat.getDrawable(
                         itemView.context,
-                        R.drawable.ic_yello_pink
-                    )
+                        R.drawable.ic_yello_pink,
+                    ),
                 )
                 binding.tvGender.text = binding.root.context.getString(R.string.my_yello_send_by_girl)
             }
@@ -128,7 +128,7 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
                 }
                 binding.clSendName.isVisible = item.nameHint != -1
             }
-            if(item.nameHint == -2 || item.nameHint == -3) {
+            if (item.nameHint == -2 || item.nameHint == -3) {
                 binding.tvSendName.text = item.senderName
             }
 
@@ -138,4 +138,3 @@ class MyYelloAdapter(private val itemClick: (Yello, Int) -> (Unit)) :
         }
     }
 }
-

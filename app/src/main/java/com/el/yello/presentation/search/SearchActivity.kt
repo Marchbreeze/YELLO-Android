@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.el.yello.R
 import com.el.yello.databinding.ActivitySearchBinding
 import com.el.yello.util.extension.setPullToScrollColor
-import com.el.yello.util.manager.AmplitudeManager
 import com.el.yello.util.extension.yelloSnackbar
+import com.el.yello.util.manager.AmplitudeManager
 import com.example.ui.base.BindingActivity
-import com.example.ui.state.UiState
 import com.example.ui.extension.setOnSingleClickListener
+import com.example.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -60,7 +60,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
         _adapter = SearchAdapter { searchFriendModel, position, holder ->
             viewModel.setPositionAndHolder(position, holder)
             viewModel.addFriendToServer(searchFriendModel.id.toLong())
-            AmplitudeManager.trackEventWithProperties("click_search_addfriend")
+            AmplitudeManager.trackEventWithProperties(EVENT_CLICK_SEARCH_ADD_FRIEND)
         }
         binding.rvRecommendSearch.adapter = adapter
         binding.rvRecommendSearch.addItemDecoration(SearchItemDecoration(this))
@@ -72,7 +72,8 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         binding.etRecommendSearchBox.requestFocus()
         inputMethodManager.showSoftInput(
-            binding.etRecommendSearchBox, InputMethodManager.SHOW_IMPLICIT
+            binding.etRecommendSearchBox,
+            InputMethodManager.SHOW_IMPLICIT,
         )
     }
 
@@ -210,5 +211,6 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
 
     companion object {
         const val debounceTime = 500L
+        private const val EVENT_CLICK_SEARCH_ADD_FRIEND = "click_search_addfriend"
     }
 }

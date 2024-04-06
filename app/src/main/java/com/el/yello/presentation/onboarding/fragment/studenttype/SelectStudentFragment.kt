@@ -22,7 +22,7 @@ class SelectStudentFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
-        binding.highschool = StudentType.HIGHSCHOOL.toString()
+        binding.school = StudentType.SCHOOL.toString()
         binding.university = StudentType.UNIVERSITY.toString()
         setupStudentType()
     }
@@ -44,23 +44,20 @@ class SelectStudentFragment :
     private fun setupStudentType() {
         viewModel.studentType.observe(viewLifecycleOwner) { studentType ->
             when (studentType) {
-                StudentType.HIGHSCHOOL.toString() -> {
-                    changeHighSchoolBtn()
+                StudentType.SCHOOL.toString() -> {
+                    changeSchoolBtn()
                     binding.btnSelectTypeNext.setOnSingleClickListener {
                         findNavController().navigate(R.id.action_selectStudentFragment_to_highschoolInfoFragment)
                         amplitudeSelectStudent()
-                        AmplitudeManager.updateUserProperties(EVENT_STUDENT_TYPE, VALUE_HIGH_SCHOOL)
                         val activity = requireActivity() as OnBoardingActivity
                         activity.progressBarPlus()
                     }
                 }
-
                 StudentType.UNIVERSITY.toString() -> {
                     changeUniversityBtn()
                     binding.btnSelectTypeNext.setOnSingleClickListener {
                         findNavController().navigate(R.id.action_selectStudentFragment_to_universityInfoFragment)
                         amplitudeSelectStudent()
-                        AmplitudeManager.updateUserProperties(EVENT_STUDENT_TYPE, VALUE_UNIVERSITY)
                         val activity = requireActivity() as OnBoardingActivity
                         activity.progressBarPlus()
                     }
@@ -69,7 +66,7 @@ class SelectStudentFragment :
         }
     }
 
-    private fun changeHighSchoolBtn() {
+    private fun changeSchoolBtn() {
         with(binding) {
             btnSchoolHighschool.setBackgroundResource(R.drawable.shape_black_fill_yello500_line_8_rect)
             btnSchoolUniversity.setBackgroundResource(R.drawable.shape_black_fill_grayscales700_line_8_rect)
@@ -93,14 +90,16 @@ class SelectStudentFragment :
 
     private fun amplitudeSelectStudent() {
         AmplitudeManager.trackEventWithProperties(
-            "click_onboarding_next",
-            JSONObject().put("onboard_view", "student_type"),
+            EVENT_CLICK_ONBOARDING_NEXT,
+            JSONObject().put(NAME_ONBOARD_VIEW, VALUE_STUDENT_TYPE),
         )
     }
 
     companion object {
         private const val EVENT_STUDENT_TYPE = "user_student_type"
-        private const val VALUE_HIGH_SCHOOL = "highschool"
+        private const val EVENT_CLICK_ONBOARDING_NEXT = "click_onboarding_next"
+        private const val NAME_ONBOARD_VIEW = "onboard_view"
+        private const val VALUE_STUDENT_TYPE = "student_type"
         private const val VALUE_UNIVERSITY = "university"
     }
 }

@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
 ) : ViewModel() {
 
     private val _kakaoLogoutState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
@@ -83,5 +83,4 @@ class SettingViewModel @Inject constructor(
     private fun clearLocalInfo() {
         authRepository.clearLocalPref()
     }
-
 }

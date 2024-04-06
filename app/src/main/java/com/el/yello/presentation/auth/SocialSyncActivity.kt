@@ -45,7 +45,7 @@ class SocialSyncActivity :
 
     private fun initSocialSyncBtnListener() {
         binding.btnSocialSync.setOnSingleClickListener {
-            AmplitudeManager.trackEventWithProperties("click_onboarding_kakao_friends")
+            AmplitudeManager.trackEventWithProperties(EVENT_CLICK_KAKAO_FRIENDS)
             viewModel.getFriendsListFromKakao()
         }
     }
@@ -90,10 +90,12 @@ class SocialSyncActivity :
                 finish()
             } else {
                 checkNameDialog = CheckNameDialog()
-                binding.tvSocialSyncTitle.visibility = View.GONE
-                binding.tvSocialSyncSubtitle.visibility = View.GONE
-                binding.ivSocialSync.visibility = View.GONE
-                binding.btnSocialSync.visibility = View.GONE
+                with(binding) {
+                    tvSocialSyncTitle.visibility = View.GONE
+                    tvSocialSyncSubtitle.visibility = View.GONE
+                    ivSocialSync.visibility = View.GONE
+                    btnSocialSync.visibility = View.GONE
+                }
                 checkNameDialog?.arguments = bundle
                 checkNameDialog?.show(supportFragmentManager, CHECK_NAME_DIALOG)
             }
@@ -103,5 +105,9 @@ class SocialSyncActivity :
     override fun onDestroy() {
         super.onDestroy()
         checkNameDialog?.dismiss()
+    }
+
+    companion object {
+        private const val EVENT_CLICK_KAKAO_FRIENDS = "click_onboarding_kakao_friends"
     }
 }

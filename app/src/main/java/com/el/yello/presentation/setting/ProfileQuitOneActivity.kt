@@ -33,13 +33,19 @@ class ProfileQuitOneActivity :
     private fun initQuitBtnListener() {
         binding.btnProfileQuitResume.setOnSingleClickListener {
             AmplitudeManager.trackEventWithProperties(
-                "click_profile_withdrawal",
-                JSONObject().put("withdrawal_button", "withdrawal2"),
+                EVENT_CLICK_PROFILE_WITHDRAWAL,
+                JSONObject().put(NAME_WITHDRAWAL_BUTTON, VALUE_WITHDRAWAL_TWO),
             )
             Intent(this, ProfileQuitTwoActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(this)
             }
         }
+    }
+
+    companion object {
+        private const val EVENT_CLICK_PROFILE_WITHDRAWAL = "click_profile_withdrawal"
+        private const val NAME_WITHDRAWAL_BUTTON = "withdrawal_button"
+        private const val VALUE_WITHDRAWAL_TWO = "withdrawal2"
     }
 }

@@ -80,8 +80,8 @@ class InviteFriendDialog :
     private fun initKakaoInviteBtnListener() {
         binding.btnInviteKakao.setOnSingleClickListener {
             AmplitudeManager.trackEventWithProperties(
-                "click_invite_kakao",
-                JSONObject().put("invite_view", previousScreen),
+                EVENT_CLICK_INVITE_KAKAO,
+                JSONObject().put(NAME_INVITE_VIEW, previousScreen),
             )
             startKakaoInvite(requireContext())
         }
@@ -90,8 +90,8 @@ class InviteFriendDialog :
     private fun initLinkInviteBtnListener() {
         binding.btnInviteLink.setOnSingleClickListener {
             AmplitudeManager.trackEventWithProperties(
-                "click_invite_link",
-                JSONObject().put("invite_view", previousScreen),
+                EVENT_CLICK_INVITE_LINK,
+                JSONObject().put(NAME_INVITE_VIEW, previousScreen),
             )
             val clipboardManager =
                 requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -157,6 +157,9 @@ class InviteFriendDialog :
 
         const val CLIP_LABEL = "RECOMMEND_LINK"
         private const val KEY_YELLO_ID = "KEY"
+        private const val EVENT_CLICK_INVITE_KAKAO = "click_invite_kakao"
+        private const val EVENT_CLICK_INVITE_LINK = "click_invite_link"
+        private const val NAME_INVITE_VIEW = "invite_view"
 
         @JvmStatic
         fun newInstance(yelloId: String, previousScreen: String) = InviteFriendDialog().apply {

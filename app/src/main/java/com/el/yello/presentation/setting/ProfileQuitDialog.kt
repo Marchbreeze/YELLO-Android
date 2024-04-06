@@ -11,9 +11,9 @@ import com.el.yello.R
 import com.el.yello.databinding.FragmentProfileQuitDialogBinding
 import com.el.yello.util.manager.AmplitudeManager
 import com.example.ui.base.BindingDialogFragment
+import com.example.ui.extension.setOnSingleClickListener
 import com.example.ui.extension.toast
 import com.example.ui.state.UiState
-import com.example.ui.extension.setOnSingleClickListener
 import com.example.ui.util.Utils.restartApp
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -62,8 +62,8 @@ class ProfileQuitDialog :
     private fun initQuitBtnListener() {
         binding.btnProfileDialogQuit.setOnSingleClickListener {
             AmplitudeManager.trackEventWithProperties(
-                "click_profile_withdrawal",
-                JSONObject().put("withdrawal_button", "withdrawal4"),
+                EVENT_CLICK_PROFILE_WITHDRAWAL,
+                JSONObject().put(NAME_WITHDRAWAL_BUTTON, VALUE_WITHDRAWAL_FOUR),
             )
             viewModel.deleteUserDataToServer()
         }
@@ -87,8 +87,8 @@ class ProfileQuitDialog :
         viewModel.kakaoQuitState.flowWithLifecycle(lifecycle).onEach { state ->
             when (state) {
                 is UiState.Success -> {
-                    AmplitudeManager.trackEventWithProperties("complete_withdrawal")
-                    restartApp(requireContext(),null)
+                    AmplitudeManager.trackEventWithProperties(EVENT_COMPLETE_WITHDRAWAL)
+                    restartApp(requireContext(), null)
                 }
 
                 is UiState.Failure -> toast(getString(R.string.internet_connection_error_msg))
@@ -98,5 +98,12 @@ class ProfileQuitDialog :
                 is UiState.Loading -> return@onEach
             }
         }.launchIn(lifecycleScope)
+    }
+
+    companion object {
+        private const val EVENT_CLICK_PROFILE_WITHDRAWAL = "click_profile_withdrawal"
+        private const val NAME_WITHDRAWAL_BUTTON = "withdrawal_button"
+        private const val VALUE_WITHDRAWAL_FOUR = "withdrawal4"
+        private const val EVENT_COMPLETE_WITHDRAWAL = "complete_withdrawal"
     }
 }

@@ -389,12 +389,24 @@ class OnBoardingViewModel @Inject constructor(
                     Timber.e("POST SIGN UP ERROR : $t")
                 }
         }
-        AmplitudeManager.updateUserProperties("user_sex", gender)
-        AmplitudeManager.updateUserProperties("user_name", nameText.value.toString())
+        AmplitudeManager.updateUserProperties(PROPERTY_USER_SEX, gender)
+        AmplitudeManager.updateUserProperties(PROPERTY_USER_NAME, nameText.value.toString())
+
+        when {
+            highSchool.contains("중학교") -> AmplitudeManager.updateUserProperties(EVENT_STUDENT_TYPE, VALUE_MIDDLE_SCHOOL,)
+            highSchool.contains("고등학교") -> AmplitudeManager.updateUserProperties(EVENT_STUDENT_TYPE, VALUE_HIGH_SCHOOL,)
+            else -> AmplitudeManager.updateUserProperties(EVENT_STUDENT_TYPE, VALUE_UNIVERSITY)
+        }
     }
 
     companion object {
         private const val REGEX_ID_PATTERN = "^([A-Za-z0-9_.]*)\$"
         private const val REGEX_NAME_PATTERN = "^([가-힣]*)\$"
+        private const val PROPERTY_USER_SEX = "user_sex"
+        private const val PROPERTY_USER_NAME = "user_name"
+        private const val EVENT_STUDENT_TYPE = "user_student_type"
+        private const val VALUE_UNIVERSITY = "university"
+        private const val VALUE_MIDDLE_SCHOOL = "middleschool"
+        private const val VALUE_HIGH_SCHOOL = "highschool"
     }
 }

@@ -70,13 +70,13 @@ class PointUseDialog : BindingDialogFragment<DialogPointUseBinding>(R.layout.dia
                 dismiss()
                 when (viewModel.pointType) {
                     PointEnum.INITIAL.ordinal -> {
-                        AmplitudeManager.trackEventWithProperties("click_modal_firstletter_yes")
+                        AmplitudeManager.trackEventWithProperties(EVENT_MODAL_FIRST_LETTER_YES)
                     }
                     PointEnum.SUBSCRIBE.ordinal -> {
-                        AmplitudeManager.trackEventWithProperties("click_modal_firstletter_yes")
+                        AmplitudeManager.trackEventWithProperties(EVENT_MODAL_FIRST_LETTER_YES)
                     }
                     PointEnum.KEYWORD.ordinal -> {
-                        AmplitudeManager.trackEventWithProperties("click_modal_keyword_yes")
+                        AmplitudeManager.trackEventWithProperties(EVENT_MODAL_KEYWORD_YES)
                     }
                 }
                 PointAfterDialog.newInstance().show(parentFragmentManager, "dialog")
@@ -85,9 +85,9 @@ class PointUseDialog : BindingDialogFragment<DialogPointUseBinding>(R.layout.dia
 
         binding.tvNo.setOnSingleClickListener {
             if (viewModel.pointType == PointEnum.INITIAL.ordinal) {
-                AmplitudeManager.trackEventWithProperties("click_modal_firstletter_no")
+                AmplitudeManager.trackEventWithProperties(EVENT_MODAL_FIRST_LETTER_NO)
             } else {
-                AmplitudeManager.trackEventWithProperties("click_modal_keyword_no")
+                AmplitudeManager.trackEventWithProperties(EVENT_MODAL_KEYWORD_NO)
             }
             dismiss()
         }
@@ -120,5 +120,9 @@ class PointUseDialog : BindingDialogFragment<DialogPointUseBinding>(R.layout.dia
                     putBoolean("is_two_button", isTwoButton)
                 }
             }
+        private const val EVENT_MODAL_FIRST_LETTER_YES = "click_modal_firstletter_yes"
+        private const val EVENT_MODAL_KEYWORD_YES = "click_modal_keyword_yes"
+        private const val EVENT_MODAL_FIRST_LETTER_NO = "click_modal_firstletter_no"
+        private const val EVENT_MODAL_KEYWORD_NO = "click_modal_keyword_no"
     }
 }
