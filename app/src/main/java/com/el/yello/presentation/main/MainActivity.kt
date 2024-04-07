@@ -349,7 +349,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         const val PUSH_TYPE_OPEN_VOTE = "OPEN_VOTE"
 
         const val BACK_PRESSED_INTERVAL = 2000
-        const val EXPIRED_DATE_FORMAT = "yyyy.MM.dd"
+        const val EXPIRED_DATE_FORMAT = "yyyy-MM-dd"
         const val PAY_RESUBS_DIALOG = "PayResubsNoticeDialog"
         private const val EVENT_CLICK_RECOMMEND_NAVIGATION = "click_recommend_navigation"
         private const val TAG_NOTICE_DIALOG = "NOTICE_DIALOG"
