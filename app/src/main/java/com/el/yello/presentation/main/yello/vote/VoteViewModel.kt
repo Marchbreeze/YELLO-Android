@@ -273,8 +273,10 @@ class VoteViewModel @Inject constructor(
                 backgroundIndex = (backgroundIndex + currentNoteIndex) % 12 + 1,
             )
         } catch (e: IndexOutOfBoundsException) {
-            voteRepository.clearStoredVote()
-            _isIndexErrorOccurred.emit(true)
+            viewModelScope.launch {
+                voteRepository.clearStoredVote()
+                _isIndexErrorOccurred.emit(true)
+            }
         }
     }
 

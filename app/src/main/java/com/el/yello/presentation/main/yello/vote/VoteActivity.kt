@@ -16,6 +16,7 @@ import com.el.yello.util.manager.AmplitudeManager
 import com.el.yello.util.extension.yelloSnackbar
 import com.example.ui.base.BindingActivity
 import com.example.ui.animation.FadeOutTransformation
+import com.example.ui.extension.toast
 import com.example.ui.state.UiState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -52,16 +53,13 @@ class VoteActivity : BindingActivity<ActivityVoteBinding>(R.layout.activity_vote
     }
 
     private fun setupIsIndexErrorOccurred() {
-        viewModel.isIndexErrorOccurred.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+        viewModel.isIndexErrorOccurred.flowWithLifecycle(lifecycle)
             .onEach { isErrorOccurred ->
                 if (isErrorOccurred) {
-                    toast(
-                        binding.root,
-                        getString(R.string.internet_connection_error_msg),
-                    )
+                    toast(getString(R.string.internet_connection_error_msg))
                     finish()
                 }
-            }.launchIn(viewLifecycleOwner.lifecycleScope)
+            }.launchIn(lifecycleScope)
     }
 
     private fun setupVoteState() {
