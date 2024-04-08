@@ -221,6 +221,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
                 is Success -> {
                     if (state.data?.subscribe != CANCELED) return@onEach
                     // TODO : 도메인 모델에 변환된 날짜로 파싱되도록 보완
+                    if (state.data?.expiredDate.toString().isNullOrBlank()) return@onEach
                     val expiredDateString = state.data?.expiredDate.toString()
                     val expiredDate = SimpleDateFormat(EXPIRED_DATE_FORMAT).parse(expiredDateString)
                         ?: return@onEach
