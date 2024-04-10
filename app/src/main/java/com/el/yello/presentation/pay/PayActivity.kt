@@ -515,8 +515,8 @@ class PayActivity : BindingActivity<ActivityPayBinding>(R.layout.activity_pay) {
         const val TYPE_TWO = "ticket2"
         const val TYPE_FIVE = "ticket5"
 
-        const val PRICE_PLUS = "2800"
-        const val PRICE_ONE = "990"
+        const val PRICE_PLUS = "2900"
+        const val PRICE_ONE = "1400"
         const val PRICE_TWO = "1900"
         const val PRICE_FIVE = "3900"
 
