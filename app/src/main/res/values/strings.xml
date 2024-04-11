@@ -325,12 +325,12 @@
 
     <string name="pay_in_app_one_title">이름 열람권\n1개</string>
     <string name="pay_in_app_one_original_price"><strike>  1400원  </strike></string>
-    <string name="pay_in_app_one_price">990원</string>
+    <string name="pay_in_app_one_price">1400원</string>
     <string name="pay_in_app_two_title">이름 열람권\n2개</string>
-    <string name="pay_in_app_two_original_price"><strike>  2800원  </strike></string>
+    <string name="pay_in_app_two_original_price">(개당 950원)</string>
     <string name="pay_in_app_two_price">1900원</string>
     <string name="pay_in_app_five_title">이름 열람권\n5개</string>
-    <string name="pay_in_app_five_original_price"><strike>  7000원  </strike></string>
+    <string name="pay_in_app_five_original_price">(개당 780원)</string>
     <string name="pay_in_app_five_price">3900원</string>
     <string name="pay_in_app_discount">할인!</string>
 
