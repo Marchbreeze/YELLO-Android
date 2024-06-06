@@ -8,6 +8,7 @@ import android.view.WindowManager
 import com.el.yello.R
 import com.el.yello.databinding.FragmentProfileQuitInviteFriendBinding
 import com.el.yello.presentation.main.MainActivity
+import com.el.yello.util.manager.AmplitudeManager
 import com.example.ui.base.BindingDialogFragment
 import com.example.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,7 @@ class ProfileQuitInviteDialog :
             dismiss()
         }
         binding.btnProfileInviteYes.setOnSingleClickListener {
+            AmplitudeManager.trackEventWithProperties(EVENT_CLICK_WITHDRAWAL_RECOMMEND)
             val intent = Intent(requireContext(), MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                 putExtra(RECOMMEND_FRAGMENT, true)
@@ -56,5 +58,6 @@ class ProfileQuitInviteDialog :
     private companion object {
         const val QUIT_DIALOG = "quitDialog"
         private const val RECOMMEND_FRAGMENT = "RecommendFragment"
+        private const val EVENT_CLICK_WITHDRAWAL_RECOMMEND = "click_withdrawal_recommend"
     }
 }
