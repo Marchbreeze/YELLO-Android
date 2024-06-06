@@ -182,6 +182,8 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun getYelloId() = authRepository.getYelloId()
+
     companion object {
         const val CODE_UNAVAILABLE_EVENT = "100"
     }

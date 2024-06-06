@@ -1,12 +1,15 @@
 package com.el.yello.presentation.setting
 
+import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import com.el.yello.R
 import com.el.yello.databinding.FragmentProfileQuitInviteFriendBinding
+import com.el.yello.presentation.main.MainActivity
 import com.example.ui.base.BindingDialogFragment
+import com.example.ui.extension.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,6 +19,23 @@ class ProfileQuitInviteDialog :
     override fun onStart() {
         super.onStart()
         setDialogBackground()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnProfileInviteNo.setOnSingleClickListener {
+            ProfileQuitDialog().show(parentFragmentManager, QUIT_DIALOG)
+            dismiss()
+        }
+        binding.btnProfileInviteYes.setOnSingleClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                putExtra(RECOMMEND_FRAGMENT, true)
+            }
+            startActivity(intent)
+            dismiss()
+        }
     }
 
     private fun setDialogBackground() {
@@ -33,7 +53,8 @@ class ProfileQuitInviteDialog :
         dialog?.setCancelable(true)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private companion object {
+        const val QUIT_DIALOG = "quitDialog"
+        private const val RECOMMEND_FRAGMENT = "RecommendFragment"
     }
 }

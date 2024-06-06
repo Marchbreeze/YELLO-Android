@@ -38,25 +38,24 @@
             app:layout_constraintTop_toBottomOf="@id/tv_profile_invite_dialog_title" />
 
         <TextView
-            android:id="@+id/btn_profile_invite_reject"
+            android:id="@+id/btn_profile_invite_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"
             android:layout_marginTop="49dp"
             android:gravity="center"
             android:paddingVertical="11dp"
-
             android:text="@string/profile_dialog_invite_friend_no"
             android:textAppearance="?textAppearanceButton"
             android:textColor="@color/grayscales_600"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_profile_invite_quit"
+            app:layout_constraintEnd_toStartOf="@id/btn_profile_invite_yes"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_profile_invite_icon" />
 
         <TextView
-            android:id="@+id/btn_profile_invite_quit"
+            android:id="@+id/btn_profile_invite_yes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
@@ -69,8 +68,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/btn_profile_invite_reject"
-            app:layout_constraintTop_toTopOf="@id/btn_profile_invite_reject" />
+            app:layout_constraintStart_toEndOf="@id/btn_profile_invite_no"
+            app:layout_constraintTop_toTopOf="@id/btn_profile_invite_no" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

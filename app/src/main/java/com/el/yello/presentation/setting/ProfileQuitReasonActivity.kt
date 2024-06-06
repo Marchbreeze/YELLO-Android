@@ -22,7 +22,7 @@ class ProfileQuitReasonActivity :
 
     private var clickedItemPosition: Int = RecyclerView.NO_POSITION
     private var isItemClicked: Boolean = false
-    private var profileQuitDialog: ProfileQuitDialog? = null
+    private var profileQuitInviteDialog: ProfileQuitInviteDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,8 +65,8 @@ class ProfileQuitReasonActivity :
 
     private fun initInviteDialogBtnListener() {
         binding.btnProfileQuitReasonDone.setOnSingleClickListener {
-            profileQuitDialog = ProfileQuitDialog()
-            profileQuitDialog?.show(supportFragmentManager, QUIT_DIALOG)
+            profileQuitInviteDialog = ProfileQuitInviteDialog()
+            profileQuitInviteDialog?.show(supportFragmentManager, QUIT_DIALOG)
         }
     }
 
@@ -96,7 +96,7 @@ class ProfileQuitReasonActivity :
 
     override fun onDestroy() {
         super.onDestroy()
-        profileQuitDialog?.dismiss()
+        profileQuitInviteDialog?.dismiss()
         _adapter = null
     }
 
