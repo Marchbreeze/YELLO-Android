@@ -85,7 +85,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         if (intent.getBooleanExtra(RECOMMEND_FRAGMENT, false)) {
             binding.bnvMain.selectedItemId = R.id.menu_recommend
             navigateTo<RecommendFragment>()
-            val inviteFriendDialog = InviteFriendDialog.newInstance(viewModel.getYelloId(), "Previous Screen")
+            val inviteFriendDialog = InviteFriendDialog.newInstance(viewModel.getYelloId(), PREVIOUS_Screen)
             inviteFriendDialog.show(supportFragmentManager, INVITE_FRIEND_DIALOG)
         }
     }
@@ -373,6 +373,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
         private const val RECOMMEND_FRAGMENT = "RecommendFragment"
         private const val INVITE_FRIEND_DIALOG = "InviteFriendDialog"
+        private const val PREVIOUS_Screen = "Previous Screen"
 
         @JvmStatic
         fun getIntent(context: Context, type: String? = null, path: String? = null) =
