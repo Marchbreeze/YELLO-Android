@@ -53,6 +53,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     private var backPressedTime: Long = 0
     private var userSubsStateJob: Job? = null
+    private var inviteFriendDialog: InviteFriendDialog? = null
 
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -343,6 +344,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             number = count
             isVisible = count != 0
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        inviteFriendDialog = null
     }
 
     companion object {
