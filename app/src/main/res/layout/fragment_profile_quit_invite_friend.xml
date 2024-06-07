@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/shape_grayscales900_fill_8_rect"
+        android:paddingBottom="26dp">
+
+        <TextView
+            android:id="@+id/tv_profile_invite_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:gravity="center"
+            android:text="@string/profile_dialog_invite_friend_title"
+            android:textAppearance="?textAppearanceSubtitle1"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_profile_invite_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/img_quit_invite_friend"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_profile_invite_dialog_title" />
+
+        <TextView
+            android:id="@+id/btn_profile_invite_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="49dp"
+            android:gravity="center"
+            android:paddingVertical="11dp"
+            android:text="@string/profile_dialog_invite_friend_no"
+            android:textAppearance="?textAppearanceButton"
+            android:textColor="@color/grayscales_600"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_profile_invite_yes"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_profile_invite_icon" />
+
+        <TextView
+            android:id="@+id/btn_profile_invite_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="38dp"
+            android:gravity="center"
+            android:paddingVertical="11dp"
+            android:text="@string/profile_dialog_invite_friend_yes"
+            android:textAppearance="?textAppearanceButton"
+            android:textColor="@color/yello_main_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/btn_profile_invite_no"
+            app:layout_constraintTop_toTopOf="@id/btn_profile_invite_no" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

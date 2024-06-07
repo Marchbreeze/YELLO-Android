@@ -15,6 +15,7 @@ import com.el.yello.R
 import com.el.yello.databinding.ActivityMainBinding
 import com.el.yello.presentation.event.EventActivity
 import com.el.yello.presentation.main.MainViewModel.Companion.CODE_UNAVAILABLE_EVENT
+import com.el.yello.presentation.main.dialog.invite.InviteFriendDialog
 import com.el.yello.presentation.main.dialog.notice.NoticeDialog
 import com.el.yello.presentation.main.myyello.MyYelloFragment
 import com.el.yello.presentation.main.myyello.read.MyYelloReadActivity
@@ -52,6 +53,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
 
     private var backPressedTime: Long = 0
     private var userSubsStateJob: Job? = null
+    private var inviteFriendDialog: InviteFriendDialog? = null
 
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -76,6 +78,16 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         setupGetNoticeState()
         setupGetVoteCountState()
         setupGetEventState()
+        navigateToRecommendShowDialog()
+    }
+
+    private fun navigateToRecommendShowDialog() {
+        if (intent.getBooleanExtra(RECOMMEND_FRAGMENT, false)) {
+            binding.bnvMain.selectedItemId = R.id.menu_recommend
+            navigateTo<RecommendFragment>()
+            val inviteFriendDialog = InviteFriendDialog.newInstance(viewModel.getYelloId(), PREVIOUS_Screen)
+            inviteFriendDialog.show(supportFragmentManager, INVITE_FRIEND_DIALOG)
+        }
     }
 
     private fun initBackPressedCallback() {
@@ -334,6 +346,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        inviteFriendDialog = null
+    }
+
     companion object {
         private const val EXTRA_TYPE = "type"
         private const val EXTRA_PATH = "path"
@@ -353,6 +370,10 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         const val PAY_RESUBS_DIALOG = "PayResubsNoticeDialog"
         private const val EVENT_CLICK_RECOMMEND_NAVIGATION = "click_recommend_navigation"
         private const val TAG_NOTICE_DIALOG = "NOTICE_DIALOG"
+
+        private const val RECOMMEND_FRAGMENT = "RecommendFragment"
+        private const val INVITE_FRIEND_DIALOG = "InviteFriendDialog"
+        private const val PREVIOUS_Screen = "Previous Screen"
 
         @JvmStatic
         fun getIntent(context: Context, type: String? = null, path: String? = null) =

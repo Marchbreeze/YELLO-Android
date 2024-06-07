@@ -222,6 +222,9 @@
     <string name="profile_item_bottom_sheet_tv_friend">친구 수</string>
     <string name="profile_item_bottom_sheet_tv_msg">받은 쪽지</string>
     <string name="profile_item_bottom_sheet_btn_delete">친구 끊기</string>
+    <string name="profile_dialog_invite_friend_title">친구가 없다면\n친구를 초대할 수도 있어요.</string>
+    <string name="profile_dialog_invite_friend_no">다음에 할게요</string>
+    <string name="profile_dialog_invite_friend_yes">오,그런 방법이!</string>
     <string name="profile_dialog_tv_title">정말 탈퇴하시겠습니까?</string>
     <string name="profile_dialog_btn_no">아니요</string>
     <string name="profile_dialog_btn_yes">네, 탈퇴합니다</string>

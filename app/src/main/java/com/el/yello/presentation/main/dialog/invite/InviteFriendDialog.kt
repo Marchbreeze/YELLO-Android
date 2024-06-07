@@ -14,8 +14,8 @@ import com.el.yello.R
 import com.el.yello.databinding.FragmentInviteFriendDialogBinding
 import com.el.yello.util.manager.AmplitudeManager
 import com.example.ui.base.BindingDialogFragment
-import com.example.ui.extension.toast
 import com.example.ui.extension.setOnSingleClickListener
+import com.example.ui.extension.toast
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.share.ShareClient
 import com.kakao.sdk.share.WebSharerClient
